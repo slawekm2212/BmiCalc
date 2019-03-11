@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Calculator</title>
+</head>
+<body>
+
+    <form title="Loan calculator form"  th:action="@{/}" th:object="${userDetails}"  method="post">
+    <label>Podaj wzrost</label>
+    <input type="text" th:field="*{userHeight}" class="form-control" id="loanTermInYearInput" aria-label="Enter your height" />
+    <label>Podaj wage</label>
+        <input type="text" th:field="*{userWeight}"  class="form-control" id="weightInput" aria-label="Enter your weight" />
+
+        <button  type="submit" class="btn btn-warning btn-lg btn-block" value="Calculate" id="calcButton">Calculate</button>
+
+    </form>
+<form>
+    <button th:if="${userDetails.userHealthCategory} == 'Niedowaga III' or ${userDetails.userHealthCategory} == 'Niedowaga II' or ${userDetails.userHealthCategory} == 'Niedowaga'" class="btn bmi-button btn-primary" type="button">
+        <span>Twoje BMI: </span> <span class="badge" th:text="${userDetails.userBMI}"></span>
+        <br/>
+        <span th:text="${userDetails.userHealthCategory}"></span>
+    </button>
+    <button th:if="${userDetails.userHealthCategory} == 'Normalne'" class="btn bmi-button btn-success" type="button">
+        <span>Twoje BMI: </span> <span class="badge" th:text="${userDetails.userBMI}"></span>
+        <br/>
+        <span th:text="${userDetails.userHealthCategory}"></span>
+    </button>
+    <button th:if="${userDetails.userHealthCategory} == 'Nadwaga'" class="btn bmi-button btn-warning" type="button">
+        <span>Twoje BMI: </span> <span class="badge" th:text="${userDetails.userBMI}"></span>
+        <br/>
+        <span th:text="${userDetails.userHealthCategory}"></span>
+    </button>
+    <button th:if="${userDetails.userHealthCategory} == 'Otyłość I' or ${userDetails.userHealthCategory} == 'Otyłość II'" class="btn bmi-button btn-warning" type="button">
+        <span>Twoje BMI: </span> <span class="badge" th:text="${userDetails.userBMI}"></span>
+        <br/>
+        <span th:text="${userDetails.userHealthCategory}"></span>
+    </button>
+    <button th:if="${userDetails.userHealthCategory} == 'Otyłość III'" class="btn bmi-button btn-danger" type="button">
+        <span>Twoje BMI: </span> <span class="badge" th:text="${userDetails.userBMI}"></span>
+        <br/>
+        <span th:text="${userDetails.userHealthCategory}"></span>
+    </button>
+</form>
+   </body>
+   </html>
